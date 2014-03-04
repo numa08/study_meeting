@@ -1,4 +1,6 @@
-## Gitで加速する安全で高品質なAndroidアプリ開発
+!SLIDE
+
+## GitとAndroidのあれこれ
 
 !SLIDE
 
