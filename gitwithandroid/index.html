@@ -1,0 +1,342 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <title>GitWithAndroid</title>
+        <link type="text/css" rel="stylesheet" href="assets/css/show.css" />
+        <link type="text/css" rel="stylesheet" href="assets/css/prettify.css" />
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/show.js"></script>
+        <script type="text/javascript" src="assets/js/prettify/prettify.js"></script>
+        <script type="text/javascript" src="assets/js/prettify/lang-apollo.js"></script><script type="text/javascript" src="assets/js/prettify/lang-css.js"></script><script type="text/javascript" src="assets/js/prettify/lang-hs.js"></script><script type="text/javascript" src="assets/js/prettify/lang-lisp.js"></script><script type="text/javascript" src="assets/js/prettify/lang-lua.js"></script><script type="text/javascript" src="assets/js/prettify/lang-ml.js"></script><script type="text/javascript" src="assets/js/prettify/lang-proto.js"></script><script type="text/javascript" src="assets/js/prettify/lang-scala.js"></script><script type="text/javascript" src="assets/js/prettify/lang-sql.js"></script><script type="text/javascript" src="assets/js/prettify/lang-sql.js"></script><script type="text/javascript" src="assets/js/prettify/lang-vb.js"></script><script type="text/javascript" src="assets/js/prettify/lang-vhdl.js"></script><script type="text/javascript" src="assets/js/prettify/lang-wiki.js"></script><script type="text/javascript" src="assets/js/prettify/lang-yaml.js"></script><link type="text/css" rel="stylesheet" href="css/custom.css?1393956113314" />
+      <script type="text/javascript"><!--
+        window.onload=function() { prettyPrint(); };
+      --></script>
+      </head>
+      <body>
+        <div id="slides">
+          <div id="reel">
+            <div class="content" id="slide-0"><div class="container">
+                  <h2 id="Git%E3%81%A8Android%E3%81%AE%E3%81%82%E3%82%8C%E3%81%93%E3%82%8C">GitとAndroidのあれこれ</h2>
+                </div>
+      </div><div class="content" id="slide-1"><div class="container">
+                  <h3 id="%E3%81%8A%E3%81%97%E3%81%AA%E3%81%8C%E3%81%8D">おしながき</h3><ul><li>Gitについて
+</li><li>Gitのホスティングサービス、Bitbucketについて
+</li><li><p>Androidについて
+</p><ul><li>4大コンポーネントとは
+</li><li>ライフサイクルとは
+</li><li>バッドパターンについて
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-2"><div class="container">
+                  <h3 id="Git%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">Gitについて</h3><ul><li>そもそもバージョン管理システムって？
+</li><li>分散バージョン管理システムって？
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-3"><div class="container">
+                  <h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">バージョン管理システム</h3><ul><li>バージョン管理システム以前と言えば？
+</li><li>ファイル名の末尾に日付
+</li><li>職人（笑）の目による差分取得
+</li><li>ｴｸｾﾙに変更履歴の記入
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-4"><div class="container">
+                  <h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">バージョン管理システム</h3><ul><li><p>バージョン管理システム以前
+</p><ul><li>誰が
+</li><li>いつ
+</li><li>何を
+</li><li>どのように
+</li></ul></li></ul><p>変更をしたのかが不明瞭だった
+</p>
+                </div>
+      </div><div class="content" id="slide-5"><div class="container">
+                  <h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">バージョン管理システム</h3><ul><li>変更を明確にした
+</li><li>過去に遡れるようにした
+</li><li>作業者を明確にした
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-6"><div class="container">
+                  <h3 id="Git">Git</h3><ul><li><p>分散バージョン管理システム
+</p><ul><li>チーム開発用
+</li><li>ローカルで変更を貯めていく
+</li><li>サーバーに転送して共有する
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-7"><div class="container">
+                  <h3 id="Git">Git</h3><ul><li><p>ローカルリポジトリ
+</p><ul><li>個人の作業リポジトリ
+</li></ul></li><li><p>リモートリポジトリ
+</p><ul><li>みんなで共有するリポジトリ
+</li><li>サーバー
+</li><li>GitHub
+</li><li>Bitbucket
+</li><li>Gitlab
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-8"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>commit
+</p><ul><li>変更を適応すること
+</li><li>誰が、いつ、何を、どのように
+</li><li>後から戻れるように
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-9"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>誰が？
+</p><ul><li>Git configの設定で勝手に入る
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-10"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>いつ？
+</p><ul><li>日付
+</li><li>変更された「順番」
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-11"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>何を？
+</p><ul><li>コミットメッセージ
+</li><li>簡潔に
+</li><li>何をやったのかを見ただけで分かるように
+</li><li>日付や名前は不要
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-12"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>どのように？
+</p><ul><li>コードの変更そのもの
+</li><li>メッセージと相違無いようにする
+</li><li>大きすぎると見難い
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-13"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">コミット</h3><ul><li><p>後から戻れる
+</p><ul><li>コミット時点に戻って作業ができる
+</li><li>コミットはビルドが通るものを
+</li><li>コミットはテストが通るものを
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-14"><div class="container">
+                  <h3 id="%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81">ブランチ</h3><ul><li><p>branch
+</p><ul><li>コミットの固まり
+</li><li>意味のある固まり
+</li><li>別のブランチに取り込む
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-15"><div class="container">
+                  <h3 id="%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81">ブランチ</h3><ul><li><p>コミットの固まり
+</p><ul><li>ブランチ間は基本、作用しあわない
+</li><li>他の人の変更の影響を受けないよう変更できる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-16"><div class="container">
+                  <h3 id="%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81">ブランチ</h3><ul><li><p>意味のある固まり
+</p><ul><li>機能毎にブランチを用意する
+</li><li>機能の実装が終わるまでのブランチ
+</li><li>ブランチの名前は機能を表すものとかにする
+</li><li>何をやってるのかをはっきりさせる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-17"><div class="container">
+                  <h3 id="%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81">ブランチ</h3><ul><li><p>意味のある固まり
+</p><ul><li>バグFix毎にブランチを用意する
+</li><li>バグFixが終わるまでのブランチ
+</li><li>ブランチの名前はバグの番号
+</li><li>何をやってるのかをはっきりさせる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-18"><div class="container">
+                  <h3 id="%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81">ブランチ</h3><ul><li><p>別のブランチに取り込む
+</p><ul><li>いわゆるマージ
+</li><li>実装が終わった機能を取り込む
+</li><li>修正が終わったバグを取り込む
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-19"><div class="container">
+                  <h3 id="Bitbucket">Bitbucket</h3><ul><li><p>リモートリポジトリを提供してくれる
+</p><ul><li>プルリクエストできる
+</li><li>Issueを管理できる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-20"><div class="container">
+                  <h3 id="%E3%83%97%E3%83%AB%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88">プルリクエスト</h3><ul><li><p>ブランチのマージを依頼する
+</p><ul><li>必ずコードレビューが入る
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-21"><div class="container">
+                  <h3 id="%E3%83%9E%E3%83%BC%E3%82%B8%E3%81%AE%E4%BE%9D%E9%A0%BC">マージの依頼</h3><ul><li><p>リリース用のブランチがある場合
+</p><ul><li>リリースされるソースコードを管理できる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-22"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%BC%E3%83%89%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%8C%E5%85%A5%E3%82%8B">コードレビューが入る</h3><ul><li>変更をの共有を強制できる
+</li><li>コードの品質が上がる
+</li><li>レビュワー、リクエストした人両方の勉強
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-23"><div class="container">
+                  <h3 id="Issue">Issue</h3><ul><li>実装予定の機能
+</li><li>バグ
+</li><li>チケットとして管理できる
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-24"><div class="container">
+                  <h3 id="Issue">Issue</h3><ul><li><p>ブランチと結びつけて運用する
+</p><ul><li>1ブランチ1issue
+</li><li>Issue解決毎にプルリクエスト
+</li><li>プルリクエスト通過でIssue終了
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-25"><div class="container">
+                  <h3 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h3><ul><li><p>コミット
+</p><ul><li>変更履歴
+</li><li>何をやったのかすぐ分かるようにメッセージをつける
+</li></ul></li><li><p>ブランチ
+</p><ul><li>機能実装やバグFix
+</li><li>何をやってるのかすぐ分かるように名付ける
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-26"><div class="container">
+                  <h3 id="%E3%81%BE%E3%81%A8%E3%82%81">まとめ</h3><ul><li><p>プルリクエスト
+</p><ul><li>ブランチの変更の取り込み依頼
+</li><li>コードレビューで変更を共有
+</li></ul></li><li><p>Issue
+</p><ul><li>実装予定の機能やバグの管理
+</li><li>ブランチとの連携すると便利
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-27"><div class="container">
+                  <h2 id="Android%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A9%B1">Androidについての話</h2><ul><li>4大コンポーネント
+</li><li>意識するべきライフサイクル
+</li><li>バッドパターンとか
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-28"><div class="container">
+                  <h3 id="4%E5%A4%A7%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88">4大コンポーネント</h3><ul><li><p>Androidアプリを支える4つの要素
+</p><ul><li>エントリポイントになりえる
+</li><li>データのやり取りの機能が提供されている
+</li><li>フレームワークの思想に則ることができる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-29"><div class="container">
+                  <h3 id="Activity">Activity</h3><ul><li><p>画面要素
+</p><ul><li>一番使う
+</li><li>その分、一番勘違いされる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-30"><div class="container">
+                  <h3 id="Service">Service</h3><ul><li><p>バックグランドとかで実行される
+</p><ul><li>UIは基本的に無い
+</li><li>ユーザの見えないところでなんかやる
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-31"><div class="container">
+                  <h3 id="BroadcastReceiver">BroadcastReceiver</h3><ul><li><p>UIは持たない
+</p><ul><li>コンポーネント間の通信とかに利用できる
+</li><li>イベントのハンドリングとかにも使う
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-32"><div class="container">
+                  <h3 id="ContentProvider">ContentProvider</h3><ul><li><p>データを提供するためのインターフェース
+</p><ul><li>データベースやアプリ内のデータとかを管理する
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-33"><div class="container">
+                  <h3 id="Intent">Intent</h3><ul><li>コンポーネント間でデータをやりとりする仕組み
+</li><li>コンポーネントからコンポーネントを呼び出すとか
+</li><li>でかいデータは渡さないのが鉄則
+</li><li>Intentを介さないデータのやりとりは危険
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-34"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88">コンポーネントを利用するメリット</h3><ul><li>フレームワークが提供する機能を活用できる
+</li><li>ライフサイクルに則った実装ができる
+</li><li>コンポーネントとの連動を意識したAPIが割りとある
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-35"><div class="container">
+                  <h3 id="%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%82%92%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E3%83%87%E3%83%A1%E3%83%AA%E3%83%83%E3%83%88">コンポーネントを利用するデメリット</h3><ul><li>コードが若干煩雑になる
+</li><li>「お約束」的なアレが多いので
+</li><li>ライフサイクルを勘違いすると落ちる
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-36"><div class="container">
+                  <h3 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%81%A8%E3%81%AF">ライフサイクルとは</h3><ul><li>コンポーネントはライフサイクルを持っている
+</li><li>メモリ管理やUXの提供のために存在する
+</li><li>JVMの動きとはかなり違う
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-37"><div class="container">
+                  <h3 id="Activity%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">Activityのライフサイクル</h3><p><img alt=""  src="http://developer.android.com/images/activity_lifecycle.png" />
+</p>
+                </div>
+      </div><div class="content" id="slide-38"><div class="container">
+                  <h3 id="Activtiy%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">Activtiyのライフサイクル</h3><ul><li>破棄されるときは全て破棄される
+</li><li>staticだろうが捨てられる
+</li><li>捨てられると困るものはちゃんと保存する
+</li><li>再生成された時の動作を決めておく必要がある
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-39"><div class="container">
+                  <h3 id="Service%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">Serviceのライフサイクル</h3><ul><li>起動に方法によって違ってくる
+</li><li>システムによって殺される
+</li><li>常時起動しておく物ではない
+</li><li>仕事が終わったら死ぬものと思っておこう
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-40"><div class="container">
+                  <h3 id="UI%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%28View%29">UIのライフサイクル(View)</h3><ul><li><p>Activityのライフサイクルに加えて意識しておこう
+</p><ul><li>必ずしもActivityのそれと一致しない
+</li><li>カスタムビューを作るときは状態の保存を心がけよう
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-41"><div class="container">
+                  <h3 id="UI%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%28Fragment%29">UIのライフサイクル(Fragment)</h3><ul><li><p>今どきFragmentが使えないとかw
+</p><ul><li>SupportLibraryを利用して活用しよう
+</li><li>非常にトリッキーな動きをします
+</li><li>これの話はまた別でやるかも
+</li></ul></li></ul>
+                </div>
+      </div><div class="content" id="slide-42"><div class="container">
+                  <h3 id="Application%E3%81%AE%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB">Applicationのライフサイクル</h3><ul><li>Application自体もライフサイクルを持っている
+</li><li>取り出すインスタンスによってはリークを生み出す
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-43"><div class="container">
+                  <h3 id="%E3%83%90%E3%83%83%E3%83%89%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">バッドパターンについて</h3><ul><li>ライフサイクルを無視するパターン
+</li><li>リークを生み出すパターン
+</li><li>画面サイズを考えてないパターン
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-44"><div class="container">
+                  <h3 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">ライフサイクルを無視するパターン</h3><ul><li>要はstaticな変数
+</li><li>シングルトンパターンとか
+</li><li>ライフサイクルの遷移によって容赦なくオブジェクトが捨てられる
+</li><li>JVMのつもりでいるとバグを生み出す
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-45"><div class="container">
+                  <h3 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AB%E3%82%92%E7%84%A1%E8%A6%96%E3%81%99%E3%82%8B%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">ライフサイクルを無視するパターン</h3><ul><li>finalじゃないstaticは利用しない
+</li><li>保存したい状態は、onSavedInstanceなどを利用する
+</li><li>コンポーネント間の通信は必ずIntentなどを利用
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-46"><div class="container">
+                  <h3 id="%E3%83%AA%E3%83%BC%E3%82%AF%E3%82%92%E7%94%9F%E3%81%BF%E5%87%BA%E3%81%99%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">リークを生み出すパターン</h3><ul><li>contextオブジェクトの取得でよくやる
+</li><li>Activityは破棄されたのに、Activityのcontextを利用してるとか
+</li><li>いい感じにGCの対象にならないコードを書いてしまう
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-47"><div class="container">
+                  <h3 id="%E3%83%AA%E3%83%BC%E3%82%AF%E3%82%92%E7%94%9F%E3%81%BF%E5%87%BA%E3%81%99%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">リークを生み出すパターン</h3><ul><li>ぶっちゃけ全部対処は難しい
+</li><li>非staticな内部クラスは作らない
+</li><li>ライフサイクルの異なるインスタンスを持つ場合は、弱参照にするなど。。。
+</li></ul>
+                </div>
+      </div><div class="content" id="slide-48"><div class="container">
+                  <h3 id="%E4%BB%AE%E9%9D%A2%E3%82%B5%E3%82%A4%E3%82%BA%E3%82%92%E8%80%83%E3%81%88%E3%81%A6%E3%81%AA%E3%81%84%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3">仮面サイズを考えてないパターン</h3><ul><li>UI実装は様々な画面サイズを考慮しましょう
+</li><li>考慮をする画面サイズを決めましょう
+</li></ul>
+                </div>
+      </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="js/custom.js?1393956114118"></script>
+      </body>
+    </html>
