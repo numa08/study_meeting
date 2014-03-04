@@ -1,0 +1,4 @@
+[submodule "deploy"]
+	path = deploy
+	url = git@github.com:numa08/study_meeting.git
+	branch = gh-pages
